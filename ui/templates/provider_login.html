@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Identity Provider</title>
+    <style>
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f5f7fb;
+            color: #1f2937;
+            font-family: Arial, sans-serif;
+        }
+
+        .box {
+            width: 360px;
+            background: #ffffff;
+            border: 1px solid #d9e1ec;
+            border-radius: 10px;
+            padding: 24px;
+        }
+
+        h1 {
+            margin: 0 0 12px;
+            font-size: 24px;
+            color: #111827;
+        }
+
+        p {
+            margin: 0 0 16px;
+            font-size: 14px;
+            line-height: 1.6;
+            color: #6b7280;
+        }
+
+        .error {
+            margin-bottom: 12px;
+            color: #dc2626;
+            font-size: 14px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-size: 13px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px 12px;
+            margin-bottom: 12px;
+            border: 1px solid #d9e1ec;
+            border-radius: 8px;
+            background: white;
+            color: #111827;
+            font-size: 14px;
+        }
+
+        button {
+            width: 100%;
+            padding: 11px 12px;
+            border: 1px solid #111827;
+            border-radius: 8px;
+            background: #111827;
+            color: white;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h1>Identity Provider</h1>
+        <p>Authenticate with the local provider simulation for the {{ mode }} validation path.</p>
+        {% if error %}
+            <div class="error">{{ error }}</div>
+        {% endif %}
+        <form method="post" action="{{ url_for('lab.provider_authorize', mode=mode) }}">
+            <label for="username">Username</label>
+            <input id="username" name="username" type="text" autocomplete="off">
+
+            <label for="password">Password</label>
+            <input id="password" name="password" type="password" autocomplete="off">
+
+            <button type="submit">Continue</button>
+        </form>
+    </div>
+</body>
+</html>

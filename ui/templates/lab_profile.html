@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Dashboard</title>
+    <style>
+        :root {
+            --bg: #f5f7fb;
+            --panel: #ffffff;
+            --border: #d9e1ec;
+            --text: #1f2937;
+            --muted: #6b7280;
+            --primary: #2563eb;
+            --success: #16a34a;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            background: var(--bg);
+            color: var(--text);
+            font-family: Arial, sans-serif;
+        }
+
+        .topbar {
+            background: #fff;
+            border-bottom: 1px solid var(--border);
+            padding: 16px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .topbar h1 {
+            margin: 0;
+            font-size: 20px;
+        }
+
+        .topbar a {
+            text-decoration: none;
+            color: var(--primary);
+            font-size: 14px;
+        }
+
+        .shell {
+            max-width: 1160px;
+            margin: 0 auto;
+            padding: 24px;
+        }
+
+        .hero,
+        .card {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 24px;
+        }
+
+        .hero {
+            margin-bottom: 20px;
+        }
+
+        .hero h2 {
+            margin: 0 0 8px;
+            font-size: 28px;
+        }
+
+        .hero p {
+            margin: 0;
+            color: var(--muted);
+        }
+
+        .badge-row {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 16px;
+        }
+
+        .badge {
+            padding: 8px 12px;
+            border-radius: 999px;
+            font-size: 13px;
+            border: 1px solid var(--border);
+            background: #f8fafc;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1.1fr .9fr;
+            gap: 20px;
+        }
+
+        .stack {
+            display: grid;
+            gap: 20px;
+        }
+
+        .card h3 {
+            margin: 0 0 16px;
+            font-size: 18px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 14px;
+        }
+
+        .field {
+            padding: 14px;
+            background: #f8fafc;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+        }
+
+        .field-label {
+            display: block;
+            font-size: 12px;
+            color: var(--muted);
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: .4px;
+        }
+
+        .field-value {
+            font-size: 15px;
+            word-break: break-word;
+        }
+
+        form.inline-form,
+        .form-grid {
+            display: grid;
+            gap: 12px;
+        }
+
+        .form-grid.two {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        label {
+            display: block;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        input {
+            width: 100%;
+            padding: 11px 12px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            background: white;
+            font-size: 14px;
+        }
+
+        button {
+            width: fit-content;
+            padding: 11px 14px;
+            border-radius: 10px;
+            border: 1px solid var(--primary);
+            background: var(--primary);
+            color: white;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .success {
+            color: var(--success);
+            font-weight: 700;
+        }
+
+        .muted {
+            color: var(--muted);
+        }
+
+        @media (max-width: 920px) {
+            .grid,
+            .info-grid,
+            .form-grid.two {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="topbar">
+        <h1>Account Dashboard</h1>
+        <a href="{{ url_for('lab.lab_logout') }}">Logout</a>
+    </div>
+
+    <main class="shell">
+        <section class="hero">
+            <h2>{{ player.first_name }} {{ player.last_name }}</h2>
+            <p>{{ player.email }}</p>
+            <div class="badge-row">
+                <span class="badge">Username: {{ player.username }}</span>
+                <span class="badge">Role: {{ player.role }}</span>
+                <span class="badge">Plan: {{ player.plan }}</span>
+                <span class="badge">Status: {{ player.status }}</span>
+                <span class="badge">Auth Flow: {{ mode }}</span>
+            </div>
+        </section>
+
+        <section class="grid">
+            <div class="stack">
+                <article class="card">
+                    <h3>Profile Information</h3>
+                    <div class="info-grid">
+                        <div class="field">
+                            <span class="field-label">First Name</span>
+                            <div class="field-value">{{ player.first_name }}</div>
+                        </div>
+                        <div class="field">
+                            <span class="field-label">Last Name</span>
+                            <div class="field-value">{{ player.last_name }}</div>
+                        </div>
+                        <div class="field">
+                            <span class="field-label">Email</span>
+                            <div class="field-value">{{ player.email }}</div>
+                        </div>
+                        <div class="field">
+                            <span class="field-label">Phone</span>
+                            <div class="field-value">{{ player.phone }}</div>
+                        </div>
+                        <div class="field">
+                            <span class="field-label">Country</span>
+                            <div class="field-value">{{ player.country }}</div>
+                        </div>
+                        <div class="field">
+                            <span class="field-label">Address</span>
+                            <div class="field-value">{{ player.address }}</div>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="card">
+                    <h3>Edit Profile</h3>
+                    <form class="form-grid two" method="post" action="{{ url_for('lab.lab_edit_profile') }}">
+                        <div>
+                            <label for="first_name">First Name</label>
+                            <input id="first_name" name="first_name" type="text" value="{{ player.first_name }}">
+                        </div>
+                        <div>
+                            <label for="last_name">Last Name</label>
+                            <input id="last_name" name="last_name" type="text" value="{{ player.last_name }}">
+                        </div>
+                        <div>
+                            <label for="phone">Phone</label>
+                            <input id="phone" name="phone" type="text" value="{{ player.phone }}">
+                        </div>
+                        <div>
+                            <label for="country">Country</label>
+                            <input id="country" name="country" type="text" value="{{ player.country }}">
+                        </div>
+                        <div style="grid-column: 1 / -1;">
+                            <label for="address">Address</label>
+                            <input id="address" name="address" type="text" value="{{ player.address }}">
+                        </div>
+                        <div style="grid-column: 1 / -1;">
+                            <button type="submit">Save Profile Changes</button>
+                        </div>
+                    </form>
+                </article>
+            </div>
+
+            <div class="stack">
+                <article class="card">
+                    <h3>Security</h3>
+                    <div class="info-grid">
+                        <div class="field">
+                            <span class="field-label">Email Verified</span>
+                            <div class="field-value {{ 'success' if player.email_verified else 'muted' }}">
+                                {{ "Verified" if player.email_verified else "Not Verified" }}
+                            </div>
+                        </div>
+                        <div class="field">
+                            <span class="field-label">Two-Factor Authentication</span>
+                            <div class="field-value {{ 'success' if player.two_factor_enabled else 'muted' }}">
+                                {{ "Enabled" if player.two_factor_enabled else "Disabled" }}
+                            </div>
+                        </div>
+                        <div class="field">
+                            <span class="field-label">Password Last Changed</span>
+                            <div class="field-value">{{ player.security.password_last_changed }}</div>
+                        </div>
+                        <div class="field">
+                            <span class="field-label">Recovery Email</span>
+                            <div class="field-value">{{ player.security.recovery_email }}</div>
+                        </div>
+                        <div class="field">
+                            <span class="field-label">Recent Device</span>
+                            <div class="field-value">{{ player.security.recent_device }}</div>
+                        </div>
+                        <div class="field">
+                            <span class="field-label">Account Identifier</span>
+                            <div class="field-value">{{ player.account_id }}</div>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="card">
+                    <h3>Change Email</h3>
+                    <form class="inline-form" method="post" action="{{ url_for('lab.lab_change_email') }}">
+                        <div>
+                            <label for="email">New Email Address</label>
+                            <input id="email" name="email" type="email" value="{{ player.email }}">
+                        </div>
+                        <button type="submit">Update Email</button>
+                    </form>
+                </article>
+
+                <article class="card">
+                    <h3>Change Password</h3>
+                    <form class="inline-form" method="post" action="{{ url_for('lab.lab_change_password') }}">
+                        <div>
+                            <label for="new_password">New Password</label>
+                            <input id="new_password" name="new_password" type="password" placeholder="Enter a new password">
+                        </div>
+                        <button type="submit">Update Password</button>
+                    </form>
+                </article>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

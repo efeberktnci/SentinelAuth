@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Access Denied</title>
+    <style>
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: white;
+            color: black;
+            font-family: Arial, sans-serif;
+            padding: 24px;
+        }
+
+        .box {
+            width: 100%;
+            max-width: 640px;
+        }
+
+        h1 {
+            margin: 0 0 12px;
+            font-size: 28px;
+            font-weight: 600;
+        }
+
+        p {
+            margin: 0 0 12px;
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        code {
+            display: block;
+            margin: 12px 0 18px;
+            padding: 12px;
+            border: 1px solid #d8d8d8;
+            background: #fafafa;
+            color: black;
+            font-family: Consolas, monospace;
+            font-size: 13px;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+
+        a {
+            color: #0000ee;
+            font-size: 14px;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h1>Access Denied</h1>
+        <p>The request was rejected.</p>
+        <code>{{ reason }}</code>
+        <a href="{{ url_for('lab.lab_index') }}">Back</a>
+    </div>
+</body>
+</html>
