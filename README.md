@@ -107,6 +107,10 @@ Burp will then intercept the important callback:
 
 - `GET /lab/callback/vulnerable?...`
 
+![Tampered callback request](./docs/assets/tampered-callback.png)
+
+
+
 This request contains assertion parameters such as:
 
 - `openid.op_endpoint`
@@ -138,7 +142,6 @@ Do **not** modify:
 - `openid.response_nonce`
 - `openid.signed`
 
-![Tampered callback request](./docs/assets/tampered-callback.png)
 
 ### 5. Observe the vulnerable outcome
 
