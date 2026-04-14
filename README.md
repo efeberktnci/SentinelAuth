@@ -280,22 +280,9 @@ The test suite covers:
 
 ## Additional Documentation
 
-- [Manual Walkthrough](./docs/manual-walkthrough.md)
 - [Architecture Notes](./docs/architecture.md)
 - [Threat Model](./docs/threat-model.md)
 
-## Professional Positioning
-
-For GitHub and interviews, the cleanest way to describe this project is:
-
-`A controlled local lab for identity assertion tampering, provider-side verification, and HMAC-based integrity validation.`
-
-That framing keeps the project focused on:
-
-- authentication integrity
-- callback trust boundaries
-- manual exploit reproduction
-- defensive validation logic
 
 ## Protocol Note
 
