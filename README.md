@@ -1,5 +1,9 @@
 # SentinelAuth
 
+
+![Home page](./docs/assets/home-page.png)
+
+
 **Identity Assertion Tampering & Mitigation Study**
 
 Identity-bound authentication failures remain one of the most dangerous classes of web security bugs because they break the line between "who actually authenticated" and "who the server believes authenticated." When a backend accepts identity claims from a callback request without re-validating the cryptographic proof attached to that identity, a normal login can turn into an account takeover.
@@ -27,8 +31,6 @@ Compared with the earlier version of the lab, the current flow is more realistic
 - a provider-side `check_authentication` endpoint
 - a secure consumer that actually POSTs the callback packet back to the provider endpoint
 - nonce replay protection on the secure consumer flow
-
-![Home page](./docs/assets/home-page.png)
 
 ## Why the Attack Works
 
